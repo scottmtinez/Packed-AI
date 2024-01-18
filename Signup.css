@@ -1,0 +1,18 @@
+/* --- MAIN SCREEN SIZE --- */
+    .signup-container-dis{
+        background-color: white;
+        border: solid black 1px;
+        border-radius: 10px;
+        margin: 0 auto;
+        width: 25%;
+        height: 230px;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .signup-title-name{
+        font-weight: bold;
+        text-decoration: underline;
+    }
+

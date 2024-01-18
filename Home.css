@@ -1,0 +1,28 @@
+body{
+    background-color: lightblue;
+    background-image: url("https://images.unsplash.com/photo-1497010184051-25b08385ab1d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+}
+
+/* --- MAIN SCREEN SIZE --- */
+    .title{
+        color: black;
+        text-decoration: underline;
+        margin-left: 1%;
+    }
+
+    .footer{
+        color: white;
+        background-color: transparent;
+        padding: 10px;
+        text-align: center;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 10px;
+        text-align: center;
+    }
+
+
+
+/* --- MOBILE SCREEN SIZE --- */

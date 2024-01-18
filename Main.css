@@ -1,0 +1,137 @@
+/* --- MAIN SCREEN SIZE --- */
+
+    .main-form {
+        text-align: center; 
+        margin-top: 12%;
+    }
+  
+    .destination-text-box, .search-destination-btn {
+        display: inline-block;
+        vertical-align: middle; 
+    }
+  
+    .destination-text-box {  
+        border-radius: 5px;
+        height: 25px;
+        background-color: white;
+        color: black;
+        width: 25%;
+        border: solid black 1px;
+    }
+
+    .destination-text-box:hover{
+        background-color: rgb(232, 232, 232);
+    }
+
+    .search-destination-btn:active{
+        background-color: #156987;
+    }
+
+    .search-destination-btn:hover{
+        background-color: #43a8ce;
+    }
+  
+    .powered-by-label {
+        margin-left: 275px;
+        font-size: 12px;
+        color: white;
+    }
+
+/* --- SEARCH AIRPLANE BUTTON --- */
+    .bi.bi-airplane{
+        background-color: transparent;
+        color: black;
+        border: none;
+        width: 23px;
+        height: 23px;
+        margin-left: -1.2%;
+        transform: rotate(90deg);
+    }
+
+    .bi.bi-airplane:active{
+        width: 1%;
+        height: 1%;
+    }
+
+/* --- ACCOUNT RIGHT CORNER BUTTON POPUP --- */
+    .bi.bi-person-circle{
+        color: black;
+        border: black solid 1px;
+    }
+
+    .bi.bi-person-circle:hover{
+        color: white;
+        border: white solid 1px;
+    }
+
+/* --- LOGIN FORM CONTAINER --- */
+    .login-form-container{
+        background-color: white;
+        border: solid black 1px;
+        border-radius: 10px;
+        margin: 0 auto;
+        width: 25%;
+        height: 230px;
+    }
+
+    .account-title-name{
+        text-decoration: underline;
+        font-weight: bold;
+    }
+
+    .switchToLoginBtn{
+        border: none;
+        outline: none;
+        background-color: transparent;
+        color: blue;
+        text-decoration: underline;
+    }
+
+    .login-title{
+        font-weight: bold;
+    }
+
+    .password-container {
+        display: flex;
+        align-items: center;
+      }
+      
+      .hidden-password{
+        margin-left: -27px;
+      }
+
+/* --- SIGNUP FORM CONTAINER--- */
+    .signup-form-container{
+        background-color: white;
+        border: solid black 1px;
+        border-radius: 10px;
+        margin: 0 auto;
+        width: 25%;
+        height: 330px;
+    }
+    
+    .switchToSignUpBtn{
+        border: none;
+        outline: none;
+        background-color: transparent;
+        color: blue;
+        text-decoration: underline;
+    }
+
+    .signup-title{
+        font-weight: bold;
+    }
+/* --- ACCOUNT DISPLAY CONTAINER--- */
+    .account-container-dis{
+        background-color: white;
+        border: solid black 1px;
+        border-radius: 10px;
+        margin: 0 auto;
+        width: 25%;
+        height: 230px;
+        display: flex;
+        flex-direction: column;
+    }
+
+
+/* --- MOBILE SCREEN SIZE --- */
