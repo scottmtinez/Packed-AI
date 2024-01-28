@@ -1,3 +1,24 @@
 .nextPage-container{
-    
+    background-color: transparent;
+    border-radius: 10px;
+    margin: 0 auto;
+    width: 25%;
+    height: 230px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 5%;
+}
+
+.arrival-date{
+    margin-right: 1%;
+}
+
+.extraInfo{
+    width: 60%;
+    margin-top: 1%;
+}
+
+.submit{
+    margin-top: 1%;
 }
