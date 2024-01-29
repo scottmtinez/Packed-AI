@@ -12,12 +12,16 @@ const NextPage = ({ location }) => {
     const passDateToFlightAPI = () => {
     
     };
+    
+    const sendInfo = () => {
+
+    };
 
     return(
         <div>
             <div className='nextPage-container'>
                 <h2>{location}</h2>
-                <form className='NextPage-Form'>
+                <form className='NextPage-Form' onSubmit={sendInfo}>
                     <input type='date' name='arrival-date' className='arrival-date '/>
                     <input type='date' name='departure-date' className='departure-date '/><br/>
                     <input type='text' name='extraInfo' className='extraInfo' placeholder='Extra Information about Destination...'/><br/>
