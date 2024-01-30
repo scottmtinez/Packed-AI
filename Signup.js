@@ -2,18 +2,29 @@ import React, { useState, useEffect } from 'react';
 import './Signup.css';
 import { auth } from '../firebase';
 import { createUserWithEmailAndPassword, signOut } from 'firebase/auth';
+import Dashboard from './Dashboard';
+import ReactLoading from 'react-loading';
 
 const Signup = ({ username, password, email, onLogout }) => {
+    const [loading, setLoading] = useState(true); // State to track loading state
+    const [loggedIn, setLoggedIn] = useState(false); // State to track login status
+
     useEffect(() => {
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
                 console.log('User signed up:', user);
+                setLoggedIn(true);
+
+                setTimeout(() => {
+                    setLoading(false);
+                }, 10000);
             })
             .catch((error) => {
                 console.error('Error signing up:', error.message);
+                setLoading(false);
             });
-    }, []); 
+    }, [email, password]); 
 
     const handleLogout = () => {
         signOut(auth)
@@ -28,11 +39,15 @@ const Signup = ({ username, password, email, onLogout }) => {
 
     return (
         <div className='signup-container-dis'>
-            <button className='logout-btn' onClick={handleLogout}>Logout</button>
-            <h2 className='signup-title-name'>Account Information</h2>
-            <h3 className='signup-username'>{username}</h3>
-            <h3 className='signup-email'>{email}</h3>
-            <h3 className='signup-password'>{password}</h3>
+            {loading ? (
+                <div className='loading'>
+                    <ReactLoading type={'bars'} color={'black'} height={50} width={50} />
+                </div>
+            ) : loggedIn ? (
+                <Dashboard className='loading' username={username} password={password} email={email} onLogout={handleLogout} />
+            ) : (
+                <p>Login failed. Please try again.</p>
+            )}
         </div>
     );
 }
