@@ -3,7 +3,6 @@
         background-color: transparent;    
         border-radius: 100%;
         margin-left: 97%;
-        
     }
 
     .account-container-display{
@@ -15,7 +14,7 @@
         height: 230px;
         display: flex;
         flex-direction: column;
-        display: none;
+        margin-top: 5%;
     }
 
     .login-container{
@@ -25,7 +24,7 @@
         margin: 0 auto;
         width: 25%;
         height: 230px;
-        display: none;
+        margin-top: 5%;
     }
 
     .signup-container{
@@ -35,7 +34,7 @@
         margin: 0 auto;
         width: 25%;
         height: 330px;
-        display: none;
+        margin-top: 5%;
     }
 
     .logout-btn{
@@ -107,6 +106,26 @@
 
     }
 
+    .loading{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; 
+    }
 
+    .account-container-dis {
+        position: relative;
+    }
 
-/* --- MOBILE SCREEN SIZE --- */
+    .error-message {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #ffcccc;
+        padding: 10px;
+        border: 1px solid #ff6666;
+        color: #ff3333;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
