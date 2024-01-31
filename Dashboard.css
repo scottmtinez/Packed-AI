@@ -1,1 +1,49 @@
-/* Being worked on */
+.dashboard-container{
+    text-align: center;
+    margin: auto;
+    background-color: white;
+    height: 50%;
+    width: 80%;
+    border-radius: 10px;
+    border: solid black 1px;
+}
+
+.logout-btn{
+    float: right;
+}
+
+.row1-container, .row2-container, .row3-container, .dashboard-title{
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+
+.dashboard-title {
+    
+}
+  
+/* --- Row #1 --- */
+.num-vacations-container {
+    background-color: blueviolet;
+    color: black;
+    border-radius: 10px;
+    padding: 5px;
+    width: 250px;
+}
+
+/* --- Row #2 --- */
+.recent-vacations-list{
+    background-color: lightblue;
+    color: black;
+    border-radius: 10px;
+    padding: 5px;
+    height: 10%;
+    width: 250px;
+}
+
+/* --- Row #3 --- */
+.row3-container{
+    margin-bottom: 1%;
+}
+
+
