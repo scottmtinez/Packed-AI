@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Dashboard.css';
+import { MdAddPhotoAlternate } from "react-icons/md";
 
 function Dashboard({ username, password, email, onLogout }){
     return(
@@ -14,8 +15,8 @@ function Dashboard({ username, password, email, onLogout }){
                 <div className='num-vacations-container'>
                     <h1 className='num-vacations-title'>0 Vacations</h1>
                 </div>
-                <div className=''>
-
+                <div className='add-vacation-pictures'>
+                    <button className='add-photo-btn'><MdAddPhotoAlternate className='photo'/></button>
                 </div>
                 
             </div>
@@ -27,8 +28,10 @@ function Dashboard({ username, password, email, onLogout }){
                         No Recent Trips <br/>
                     </p>
                 </div>
-                <div className=''>
-                    
+                <div className='account-information-container'>
+                    <h1 className='account-info-title'>Account Information</h1>
+                    <h2 className='account-email'>{ username }</h2>
+                    <h2 className='account-password'>{ password }</h2>
                 </div>
             </div>
 
