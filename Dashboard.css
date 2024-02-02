@@ -23,12 +23,36 @@
 }
   
 /* --- Row #1 --- */
+.row1-container{
+    margin-bottom: 5px;
+}
+
 .num-vacations-container {
     background-color: blueviolet;
     color: black;
     border-radius: 10px;
     padding: 5px;
     width: 250px;
+    border: solid black 1px;
+    margin-right: 5px;
+}
+
+.add-vacation-pictures{
+    background-color: rgb(117, 218, 117);
+    color: black;
+    border-radius: 10px;
+    padding: 5px;
+    width: 250px;
+    border: solid black 1px;
+}
+
+.photo{
+    width: 40px;
+    height:55px;
+}
+
+.add-photo-btn{
+    all: unset;
 }
 
 /* --- Row #2 --- */
@@ -39,11 +63,39 @@
     padding: 5px;
     height: 10%;
     width: 250px;
+    border: solid black 1px;
+    margin-right: 5px;
+}
+
+.account-information-container{
+    background-color: tan;
+    border: solid black 1px;
+    color: black;
+    border-radius: 10px;
+    padding: 5px;
+    width: 250px;
+}
+
+.account-info-title{
+    font-size: 20px;
+    color: black;
+    text-decoration: underline;
+}
+
+.account-email{
+    font-size: 20px;
+    color: black;
+}
+
+.account-password{
+    font-size: 20px;
+    color: black;
 }
 
 /* --- Row #3 --- */
 .row3-container{
     margin-bottom: 1%;
 }
+
 
 
