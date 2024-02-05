@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Dashboard.css';
 import { MdAddPhotoAlternate } from "react-icons/md";
 
-function Dashboard({ username, password, email, onLogout }){
+function Dashboard({ username, password, email, onLogout, searchCounter}){
     return(
         <div className='dashboard-container'>
             <button className='logout-btn' onClick={onLogout}>Logout</button><br/>
@@ -13,7 +13,7 @@ function Dashboard({ username, password, email, onLogout }){
 
             <div className='row1-container'>
                 <div className='num-vacations-container'>
-                    <h1 className='num-vacations-title'>0 Vacations</h1>
+                    <h1 className='num-vacations-title'>{ searchCounter } Vacations</h1>
                 </div>
                 <div className='add-vacation-pictures'>
                     <button className='add-photo-btn'><MdAddPhotoAlternate className='photo'/></button>
@@ -30,8 +30,8 @@ function Dashboard({ username, password, email, onLogout }){
                 </div>
                 <div className='account-information-container'>
                     <h1 className='account-info-title'>Account Information</h1>
-                    <h2 className='account-email'>{ username }</h2>
-                    <h2 className='account-password'>{ password }</h2>
+                    <h2 className='account-email'>{ username } <a href='#' className='edit'>Edit</a></h2>
+                    <h2 className='account-password'>{ password } <a href='#' className='edit'>Edit</a></h2>
                 </div>
             </div>
 
