@@ -3,10 +3,11 @@ import './Main.css';
 import Button from 'react-bootstrap/Button'; 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Login from './Login';
 import Signup from './Signup';
 import NextPage from './NextPage';
+import Dashboard from './Dashboard'; // Import Dashboard component
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 function Main() {
   const [textboxValue, setTextboxValue] = useState('');
@@ -21,7 +22,6 @@ function Main() {
   const [passwordMatchError, setPasswordMatchError] = useState('');
   const [location, setLocation] = useState('');
   const [showNextPage, setShowNextPage] = useState(false);
-  const [searchCounter, setSearchCounter] = useState(0);
   const [count, setCount] = useState(0);
 
   const handleTextboxChange = (event) => {
@@ -29,8 +29,9 @@ function Main() {
   };
 
   const sendCounterData = () => {
-    setCount(count+1);
-    console.log(count+1); //Testing
+    console.log('Previous count:', count); //Tetsing
+    setCount(count + 1); //Increment Count
+    console.log('Updated count:', count + 1); //Testing
   }
 
   const sendInfoOnSubmit = (event) => {
@@ -55,8 +56,6 @@ function Main() {
     setUserIsLoggedIn(true);
     setUsername(enteredUsername);
     setPassword(enteredPassword);
-
-    //setLoginFormVisibility(false);
   };
 
   const handleSignUpSubmit = (event) => {
@@ -84,8 +83,6 @@ function Main() {
     setEmail(enteredEmail);
     setPassword(enteredPassword);
     setConfPassword(enteredConfPassword);
-
-    //setLoginFormVisibility(false);
   };
 
   const toggleLoginForm = () => {
@@ -125,7 +122,7 @@ function Main() {
                   <>
                     <div className='login-contaner'>
                       {UserIsLoggedIn ? (
-                        <Login username={username} password={password} onLogout={handleLogout} count={count}/>
+                        <Login username={username} password={password} onLogout={handleLogout} count={count} />
                         ) : (
                           <form className='login-form-container' onSubmit={handleLoginSubmit}>
                             <h2 className='login-title'>LOGIN</h2>
@@ -144,7 +141,7 @@ function Main() {
                   <>
                     <div className='signup-c'>
                       {UserIsLoggedIn ? (
-                        <Signup username={username} password={password} email={email} onLogout={handleLogout} count={count}/>
+                        <Signup username={username} password={password} email={email} onLogout={handleLogout} count={count} />
                       ) : (       
                         <form className='signup-form-container' onSubmit={handleSignUpSubmit}>
                           <h2 className='signup-title'>SIGNUP</h2>
@@ -188,10 +185,3 @@ function Main() {
 }
 
 export default Main;
-
-/* NOTE: 
-        - Using CSS move the person icon on the right up to be in line with the title
-        - Hide password and button to view password
-        - 
-
-*/
