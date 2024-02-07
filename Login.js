@@ -1,4 +1,4 @@
-// Account.js
+//Login.js
 import React, { useState, useEffect } from 'react';
 import './Login.css';
 import { onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
@@ -6,7 +6,7 @@ import { auth } from '../firebase';
 import Dashboard from './Dashboard';
 import ReactLoading from 'react-loading';
 
-const Account = ({ username, password, onLogout }) => {
+const Account = ({ username, password, onLogout, count }) => {
     const [user, setUser] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true); // State to track loading state
@@ -62,23 +62,22 @@ const Account = ({ username, password, onLogout }) => {
     };
 
     return (
-        <div className='account-container-dis'>
+        <div className=''>
             {loading ? (
                 // Display loading spinner while logging in
-                <ReactLoading type={'bars'} color={'#007bff'} height={50} width={50} />
+                <ReactLoading className='loading' type={'bars'} color={'#007bff'} height={50} width={50} />
             ) : error ? (
                 // Display error message above the username box if login failed
                 <div className='error-message'>{error}</div>
             ) : (
                 // Render Dashboard component if not loading and no error
-                <Dashboard className='loading' username={username} password={password} onLogout={handleLogout} />
+                <Dashboard className='loading' username={username} password={password} onLogout={handleLogout} count={count}/>
             )}
         </div>
     );
 }
 
 export default Account;
-
 /* 
     NOTE: ?
 */
