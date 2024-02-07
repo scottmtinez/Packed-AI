@@ -23,6 +23,7 @@ function Main() {
   const [location, setLocation] = useState('');
   const [showNextPage, setShowNextPage] = useState(false);
   const [count, setCount] = useState(0);
+  const [recent, setRecent] = useState('');
 
   const handleTextboxChange = (event) => {
     setTextboxValue(event.target.value);
@@ -32,7 +33,11 @@ function Main() {
     console.log('Previous count:', count); //Tetsing
     setCount(count + 1); //Increment Count
     console.log('Updated count:', count + 1); //Testing
-  }
+  };
+
+  const recentVacationList = () => {
+
+  };
 
   const sendInfoOnSubmit = (event) => {
     event.preventDefault();
