@@ -4,8 +4,9 @@ import Button from 'react-bootstrap/Button';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import Account from './Account';
+import Login from './Login';
 import Signup from './Signup';
+import NextPage from './NextPage';
 
 function Main() {
   const [textboxValue, setTextboxValue] = useState('');
@@ -18,14 +19,28 @@ function Main() {
   const [confPassword, setConfPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [passwordMatchError, setPasswordMatchError] = useState('');
-  
+  const [location, setLocation] = useState('');
+  const [showNextPage, setShowNextPage] = useState(false);
+  const [searchCounter, setSearchCounter] = useState(0);
+  const [count, setCount] = useState(0);
+
   const handleTextboxChange = (event) => {
     setTextboxValue(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const sendCounterData = () => {
+    setCount(count+1);
+    console.log(count+1); //Testing
+  }
+
+  const sendInfoOnSubmit = (event) => {
     event.preventDefault();
+
+    const userLocation = event.target.elements['location'].value;
     console.log('Textbox value:', textboxValue);
+
+    setLocation(userLocation);
+    setShowNextPage(true);
   };
 
   const handleLoginSubmit = (event) => {
@@ -110,7 +125,7 @@ function Main() {
                   <>
                     <div className='login-contaner'>
                       {UserIsLoggedIn ? (
-                        <Account username={username} password={password} onLogout={handleLogout} />
+                        <Login username={username} password={password} onLogout={handleLogout} count={count}/>
                         ) : (
                           <form className='login-form-container' onSubmit={handleLoginSubmit}>
                             <h2 className='login-title'>LOGIN</h2>
@@ -129,7 +144,7 @@ function Main() {
                   <>
                     <div className='signup-c'>
                       {UserIsLoggedIn ? (
-                        <Signup username={username} password={password} email={email} onLogout={handleLogout} />
+                        <Signup username={username} password={password} email={email} onLogout={handleLogout} count={count}/>
                       ) : (       
                         <form className='signup-form-container' onSubmit={handleSignUpSubmit}>
                           <h2 className='signup-title'>SIGNUP</h2>
@@ -154,11 +169,15 @@ function Main() {
             </div>
           ) : (
             <div>
-              <form className='main-form' onSubmit={handleSubmit}>
-                <input type='text' value={textboxValue} onChange={handleTextboxChange} className='destination-text-box' id='destination-text-box' placeholder='Whats your Destination?' />
-                <button type='submit' className={`bi bi-airplane ${isLoginFormVisible ? 'hidden' : ''}`}></button>
-                <div className='powered-by-label'>Powered by FlightAPI & WeatherAPI</div>
-              </form>
+              {showNextPage ? (
+                <NextPage location={location} />
+              ) : (
+                <form className='main-form' onSubmit={sendInfoOnSubmit}>
+                  <input type='text' name="location" value={textboxValue} onChange={handleTextboxChange} className='destination-text-box' id='destination-text-box' placeholder='Whats your Destination?' />
+                  <button type='submit' onClick={sendCounterData} className={`bi bi-airplane ${isLoginFormVisible ? 'hidden' : ''}`}></button>
+                  <div className='powered-by-label'>Powered by FlightAPI & WeatherAPI</div>
+                </form>
+              )}
             </div>
           )}
         </div>
@@ -169,7 +188,6 @@ function Main() {
 }
 
 export default Main;
-
 
 /* NOTE: 
         - Using CSS move the person icon on the right up to be in line with the title
