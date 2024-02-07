@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './Dashboard.css';
 import { MdAddPhotoAlternate } from "react-icons/md";
 
-function Dashboard({ username, password, email, onLogout, searchCounter}){
+function Dashboard({ username, password, email, onLogout, count}){
+    console.log('Received count:', count);
     return(
         <div className='dashboard-container'>
             <button className='logout-btn' onClick={onLogout}>Logout</button><br/>
@@ -13,7 +14,7 @@ function Dashboard({ username, password, email, onLogout, searchCounter}){
 
             <div className='row1-container'>
                 <div className='num-vacations-container'>
-                    <h1 className='num-vacations-title'>{ searchCounter } Vacations</h1>
+                    <h1 className='num-vacations-title'>{ count } Vacations</h1>
                 </div>
                 <div className='add-vacation-pictures'>
                     <button className='add-photo-btn'><MdAddPhotoAlternate className='photo'/></button>
