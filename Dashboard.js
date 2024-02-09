@@ -20,6 +20,7 @@ function Dashboard({ username, password, email, onLogout, count}){
                     <button className='add-photo-btn'><MdAddPhotoAlternate className='photo'/></button>
                 </div>
 
+        
             </div>
 
             <div className='row2-container'>
