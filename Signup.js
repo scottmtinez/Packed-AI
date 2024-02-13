@@ -5,7 +5,7 @@ import { createUserWithEmailAndPassword, signOut } from 'firebase/auth';
 import Dashboard from './Dashboard';
 import ReactLoading from 'react-loading';
 
-const Signup = ({ username, password, email, onLogout, count }) => {
+const Signup = ({ username, password, email, onLogout, count, location }) => {
     const [loading, setLoading] = useState(true); // State to track loading state
     const [loggedIn, setLoggedIn] = useState(false); // State to track login status
 
@@ -44,7 +44,7 @@ const Signup = ({ username, password, email, onLogout, count }) => {
                     <ReactLoading type={'bars'} color={'black'} height={50} width={50} />
                 </div>
             ) : loggedIn ? (
-                <Dashboard className='loading' username={username} password={password} email={email} onLogout={handleLogout} count={count}/>
+                <Dashboard className='loading' username={username} password={password} email={email} onLogout={handleLogout} count={count} location={location} />
             ) : (
                 <p>Login failed. Please try again.</p>
             )}
