@@ -37,7 +37,7 @@ function Main() {
 
   const sendRecentVacation = (location) => {
     //console.log("We are in the sendRecentVacation(): ", location) //NOTE: Works
-    
+    setRecent(location);
   };
 
   const sendInfoOnSubmit = (event) => {
