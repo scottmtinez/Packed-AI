@@ -6,8 +6,9 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import Login from './Login';
 import Signup from './Signup';
 import NextPage from './NextPage';
-import Dashboard from './Dashboard'; // Import Dashboard component
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { ref, push, serverTimestamp } from 'firebase/database';
+import { database } from '../firebase';
 
 function Main() {
   const [textboxValue, setTextboxValue] = useState('');
@@ -38,6 +39,11 @@ function Main() {
   const sendRecentVacation = (location) => {
     //console.log("We are in the sendRecentVacation(): ", location) //NOTE: Works
     setRecent(location);
+    const recentVacationsRef = ref(database, 'recentVacations');
+    push(recentVacationsRef, {
+      location: location,
+      timestamp: serverTimestamp()
+    });
   };
 
   const sendInfoOnSubmit = (event) => {
@@ -192,3 +198,4 @@ function Main() {
 }
 
 export default Main;
+
