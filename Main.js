@@ -24,7 +24,6 @@ function Main() {
   const [showNextPage, setShowNextPage] = useState(false);
   const [count, setCount] = useState(0);
   const [recent, setRecent] = useState('');
-  const [locationList, setLocationList] = useState('');
 
   const handleTextboxChange = (event) => {
     setTextboxValue(event.target.value);
@@ -130,7 +129,7 @@ function Main() {
                   <>
                     <div className='login-contaner'>
                       {UserIsLoggedIn ? (
-                        <Login username={username} password={password} onLogout={handleLogout} count={count} />
+                        <Login username={username} password={password} onLogout={handleLogout} count={count} location={recent} />
                         ) : (
                           <form className='login-form-container' onSubmit={handleLoginSubmit}>
                             <h2 className='login-title'>LOGIN</h2>
@@ -149,7 +148,7 @@ function Main() {
                   <>
                     <div className='signup-c'>
                       {UserIsLoggedIn ? (
-                        <Signup username={username} password={password} email={email} onLogout={handleLogout} count={count} />
+                        <Signup username={username} password={password} email={email} onLogout={handleLogout} count={count} location={recent} />
                       ) : (       
                         <form className='signup-form-container' onSubmit={handleSignUpSubmit}>
                           <h2 className='signup-title'>SIGNUP</h2>
@@ -192,5 +191,4 @@ function Main() {
   );
 }
 
-export default Main;
 export default Main;
