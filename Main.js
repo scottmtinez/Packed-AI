@@ -24,6 +24,7 @@ function Main() {
   const [showNextPage, setShowNextPage] = useState(false);
   const [count, setCount] = useState(0);
   const [recent, setRecent] = useState('');
+  const [locationList, setLocationList] = useState('');
 
   const handleTextboxChange = (event) => {
     setTextboxValue(event.target.value);
@@ -35,8 +36,9 @@ function Main() {
     console.log('Updated count:', count + 1); //Testing
   };
 
-  const recentVacationList = () => {
-
+  const sendRecentVacation = (location) => {
+    //console.log("We are in the sendRecentVacation(): ", location) //NOTE: Works
+    
   };
 
   const sendInfoOnSubmit = (event) => {
@@ -44,7 +46,8 @@ function Main() {
 
     const userLocation = event.target.elements['location'].value;
     console.log('Textbox value:', textboxValue);
-
+    
+    sendRecentVacation(userLocation);
     setLocation(userLocation);
     setShowNextPage(true);
   };
@@ -189,4 +192,5 @@ function Main() {
   );
 }
 
+export default Main;
 export default Main;
