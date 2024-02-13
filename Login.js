@@ -6,7 +6,7 @@ import { auth } from '../firebase';
 import Dashboard from './Dashboard';
 import ReactLoading from 'react-loading';
 
-const Account = ({ username, password, onLogout, count }) => {
+const Account = ({ username, password, onLogout, count, location }) => {
     const [user, setUser] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true); // State to track loading state
@@ -71,13 +71,10 @@ const Account = ({ username, password, onLogout, count }) => {
                 <div className='error-message'>{error}</div>
             ) : (
                 // Render Dashboard component if not loading and no error
-                <Dashboard className='loading' username={username} password={password} onLogout={handleLogout} count={count}/>
+                <Dashboard className='loading' username={username} password={password} onLogout={handleLogout} count={count} location={location} />
             )}
         </div>
     );
 }
 
 export default Account;
-/* 
-    NOTE: ?
-*/
