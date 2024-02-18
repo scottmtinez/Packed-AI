@@ -23,6 +23,7 @@ function Dashboard({ username, password, email, onLogout, count }) {
             setLocation(data);
         });
 
+
         // Clean up listener when component unmounts
         return () => {
             off(recentVacationsRef); // Unsubscribe from database changes
