@@ -12,6 +12,7 @@ const replaceDotWithComma = (email) => {
 function Dashboard({ username }) {
   const modifiedUsername = replaceDotWithComma(username);
   const [userData, setUserData] = useState(null);
+  const [recentLocations, setRecentLocations] = useState([]);
 
   useEffect(() => {
     const auth = getAuth(); // Get the Auth instance
@@ -24,6 +25,10 @@ function Dashboard({ username }) {
     const unsubscribe = onValue(userRef, (snapshot) => {
       const userData = snapshot.val(); // Get the user's data from the snapshot
       setUserData(userData); // Update the state with the user's data
+      if (userData && userData.recentLocations) {
+        const locationsArray = Object.values(userData.recentLocations); // Extract values from recentLocations object
+        setRecentLocations(locationsArray); // Update recentLocations state
+      }
     });
 
     // Clean up listener when component unmounts
@@ -42,7 +47,12 @@ function Dashboard({ username }) {
         <div className="user-data-container">
           <h2>Username/Email: {modifiedUsername}</h2>
           <h2>Name: {userData.name}</h2>
-          <h2>Recent Location: {userData.recent}</h2>
+          <h2>Recent Locations:</h2>
+          <ul className="recent-locations-list">
+            {recentLocations.map((location, index) => (
+              <li key={index}>{location}</li>
+            ))}
+          </ul>
         </div>
       )}
     </div>
