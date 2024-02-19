@@ -1,71 +1,60 @@
 import React, { useState, useEffect } from 'react';
 import './Dashboard.css';
-import { MdAddPhotoAlternate } from "react-icons/md";
-import { getAuth } from 'firebase/auth'; // Import getAuth from Firebase Auth
-import { ref, onValue, off } from 'firebase/database'; // Import database utilities from Firebase Realtime Database
-import { getDatabase } from 'firebase/database'; // Import getDatabase function from Firebase Realtime Database
+import { MdAddPhotoAlternate } from 'react-icons/md';
+import { getAuth } from 'firebase/auth';
+import { ref, onValue, off } from 'firebase/database';
+import { getDatabase } from 'firebase/database';
 
-function Dashboard({ username, password, email, onLogout, count }) {
-    const [location, setLocation] = useState('');
+function Dashboard({ username }) {
+  const [userData, setUserData] = useState(null); // State to hold user data
+
+  useEffect(() => {
     const auth = getAuth(); // Get the Auth instance
+    const database = getDatabase(); // Get the database instance
 
-    useEffect(() => {
-        // Initialize Firebase Realtime Database
-        const database = getDatabase();
+    // Check if a user is logged in
+    if (auth.currentUser) {
+      // Sanitize the username before using it in the Firebase path
+      const sanitizedUsername = username.replace(/[.#$[\]]/g, ''); // Remove invalid characters
 
-        // Get a reference to the current user's recent locations in the database
-        const userId = auth.currentUser.uid; // Get the current user's ID
-        const recentVacationsRef = ref(database, `users/${userId}/recentVacations`);
+      const userId = auth.currentUser.uid; // Get the current user's ID
+      const userRef = ref(database, `users/${sanitizedUsername}`); // Reference to the user's data in the database
 
-        // Listen for changes to the recent locations
-        const unsubscribe = onValue(recentVacationsRef, (snapshot) => {
-            const data = snapshot.val();
-            setLocation(data);
-        });
+      // Listen for changes to the user's data
+      const unsubscribe = onValue(userRef, (snapshot) => {
+        const userData = snapshot.val(); // Get the user's data from the snapshot
+        setUserData(userData); // Update the state with the user's data
+      });
 
+      // Clean up listener when component unmounts
+      return () => {
+        off(userRef); // Unsubscribe from database changes
+      };
+    }
+  }, [username]);
 
-        // Clean up listener when component unmounts
-        return () => {
-            off(recentVacationsRef); // Unsubscribe from database changes
-        };
-    }, [auth]); // Include auth as a dependency to re-trigger effect when auth state changes
+  // Render the user's data
+  return (
+    <div className="dashboard-container">
+      <div className="">
+        <h1 className="dashboard-title">Dashboard</h1>
+      </div>
 
-    return (
-        <div className='dashboard-container'>
-            <button className='logout-btn' onClick={onLogout}>Logout</button><br/>
-
-            <div className=''>
-                <h1 className='dashboard-title'>Dashboard</h1>
-            </div>
-
-            <div className='row1-container'>
-                <div className='num-vacations-container'>
-                    <h1 className='num-vacations-title'>{ count } Vacations</h1>
-                </div>
-                <div className='add-vacation-pictures'>
-                    <button className='add-photo-btn'><MdAddPhotoAlternate className='photo'/></button>
-                </div>
-            </div>
-
-            <div className='row2-container'>
-                <div className='recent-vacations-list'>
-                    <h1>Recent Trips</h1>
-                    <p> 
-                        { location } <br/>
-                    </p>
-                </div>
-                <div className='account-information-container'>
-                    <h1 className='account-info-title'>Account Information</h1>
-                    <h2 className='account-email'>{ username } <a href='#' className='edit'>Edit</a></h2>
-                    <h2 className='account-password'>{ password } <a href='#' className='edit'>Edit</a></h2>
-                </div>
-            </div>
-
-            <div className='row3-container'>
-
-            </div>
+      {userData && (
+        <div className="user-data-container">
+          <h2>Name: {userData.name}</h2>
+          <h2>Email: {userData.email}</h2>
+          <h2>Recent Location: {userData.recent}</h2>
         </div>
-    );
+      )}
+
+      <div className="add-vacation-pictures">
+        <button className="add-photo-btn">
+          <MdAddPhotoAlternate className="photo" />
+        </button>
+      </div>
+    </div>
+  );
 }
 
 export default Dashboard;
