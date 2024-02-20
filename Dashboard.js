@@ -9,7 +9,7 @@ const replaceDotWithComma = (email) => {
   return email.replace(/\./g, ',');
 };
 
-function Dashboard({ username }) {
+function Dashboard({ username, onLogout }) {
   const modifiedUsername = replaceDotWithComma(username);
   const [userData, setUserData] = useState(null);
   const [recentLocations, setRecentLocations] = useState([]);
@@ -40,17 +40,18 @@ function Dashboard({ username }) {
   return (
     <div className="dashboard-container">
       <div className="">
+        <button className='logout-btn' onClick={onLogout}>Logout</button><br/><br/>
         <h1 className="dashboard-title">Dashboard</h1>
       </div>
 
       {userData && (
         <div className="user-data-container">
-          <h2>Username/Email: {modifiedUsername}</h2>
-          <h2>Name: {userData.name}</h2>
+          <h1 className=''>{userData.name} <a href='#' className='edit'>Edit</a></h1>
+          <h2>{modifiedUsername}<a href='#' className='edit'>Edit</a></h2>
           <h2>Recent Locations:</h2>
           <ul className="recent-locations-list">
             {recentLocations.map((location, index) => (
-              <li key={index}>{location}</li>
+              <li className='align' key={index}>{location}</li>
             ))}
           </ul>
         </div>
@@ -60,3 +61,4 @@ function Dashboard({ username }) {
 }
 
 export default Dashboard;
+
