@@ -3,7 +3,7 @@
     margin: auto;
     background-color: white;
     height: 50%;
-    width: 80%;
+    width: 60%;
     border-radius: 10px;
     border: solid black 1px;
 }
@@ -19,7 +19,9 @@
 }
 
 .dashboard-title {
-    
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
 }
   
 /* --- Row #1 --- */
@@ -105,9 +107,9 @@
 
 .recent-locations-list {
     list-style-type: none;
+    text-align: center;
   }
 
-
-
-
-
+  .align{
+    text-align: center;
+  }
