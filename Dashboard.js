@@ -4,7 +4,6 @@ import { getAuth } from 'firebase/auth';
 import { ref, onValue, off } from 'firebase/database';
 import { getDatabase } from 'firebase/database';
 
-// Function to replace "." with ","
 const replaceDotWithComma = (email) => {
   return email.replace(/\./g, ',');
 };
@@ -15,25 +14,22 @@ function Dashboard({ username, onLogout }) {
   const [recentLocations, setRecentLocations] = useState([]);
 
   useEffect(() => {
-    const auth = getAuth(); // Get the Auth instance
-    const database = getDatabase(); // Get the database instance
+    const auth = getAuth(); 
+    const database = getDatabase(); 
 
-    // Reference to the user's data in the database
     const userRef = ref(database, `users/${modifiedUsername}`);
 
-    // Listen for changes to the user's data
     const unsubscribe = onValue(userRef, (snapshot) => {
-      const userData = snapshot.val(); // Get the user's data from the snapshot
-      setUserData(userData); // Update the state with the user's data
+      const userData = snapshot.val(); 
+      setUserData(userData); 
       if (userData && userData.recentLocations) {
-        const locationsArray = Object.values(userData.recentLocations); // Extract values from recentLocations object
-        setRecentLocations(locationsArray); // Update recentLocations state
+        const locationsArray = Object.values(userData.recentLocations); 
+        setRecentLocations(locationsArray); 
       }
     });
 
-    // Clean up listener when component unmounts
     return () => {
-      off(userRef); // Unsubscribe from database changes
+      off(userRef); 
     };
   }, [modifiedUsername]);
 
