@@ -9,19 +9,23 @@ const NextPage = ({ location, username }) => {
         await sendLocationDataToFB(location, username);
     };
     
-    const getArrivalDate = () => {
+    const getExtraInformationData = () => { //Gets extra information for the vacation
+    
+    };
+
+    const getArrivalDate = () => { //Gets arrival date
 
     };
 
-    const getDepartureDate = () => {
+    const getDepartureDate = () => { //Gets departure date
 
     };
 
-    const sendDateInfoToWeatherApi = () => {
+    const sendDateInfoToWeatherApi = () => { //Sends data to the weather api
 
     };
     
-    const sendDateInfoToFlightApi = () => {
+    const sendDateInfoToFlightApi = () => { //Sends data to the flight api and then to the weather api
 
     };
 
