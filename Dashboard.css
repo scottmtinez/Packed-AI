@@ -1,115 +1,62 @@
-.dashboard-container{
-    text-align: center;
-    margin: auto;
-    background-color: white;
-    height: 50%;
-    width: 60%;
-    border-radius: 10px;
-    border: solid black 1px;
-}
+/* Dashboard.css */
 
-.logout-btn{
-    float: right;
-}
-
-.row1-container, .row2-container, .row3-container, .dashboard-title{
+/* Container styles */
+.dashboard-container {
     display: flex;
-    justify-content: center; 
-    align-items: center; 
-}
-
-.dashboard-title {
-    text-align: center;
-    font-size: 40px;
-    font-weight: bold;
-}
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+  }
   
-/* --- Row #1 --- */
-.row1-container{
-    margin-bottom: 5px;
-}
-
-.num-vacations-container {
-    background-color: blueviolet;
-    color: black;
+  /* User data container styles */
+  .user-data-container {
+    background-color: #ffffff;
     border-radius: 10px;
-    padding: 5px;
-    width: 250px;
-    border: solid black 1px;
-    margin-right: 5px;
-}
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    position: relative; 
+  }
+  
+  /* Button and link styles */
+  .logout-btn{
+    position: absolute; /* Add position absolute */
+    top: 10px; /* Align to the top */
+    right: 10px; /* Align to the right */
+  }
 
-.add-vacation-pictures{
-    background-color: rgb(117, 218, 117);
-    color: black;
-    border-radius: 10px;
-    padding: 5px;
-    width: 250px;
-    border: solid black 1px;
-}
+  .edit{
+    font-size: 10px;
+    padding: 4px 8px; /* Adjusted padding */
+  }
 
-.photo{
-    width: 40px;
-    height:55px;
-}
-
-.add-photo-btn{
-    all: unset;
-}
-
-/* --- Row #2 --- */
-.recent-vacations-list{
-    background-color: lightblue;
-    color: black;
-    border-radius: 10px;
-    padding: 5px;
-    height: 10%;
-    width: 250px;
-    border: solid black 1px;
-    margin-right: 5px;
-}
-
-.account-information-container{
-    background-color: tan;
-    border: solid black 1px;
-    color: black;
-    border-radius: 10px;
-    padding: 5px;
-    width: 250px;
-}
-
-.account-info-title{
-    font-size: 20px;
-    color: black;
-    text-decoration: underline;
-}
-
-.account-email{
-    font-size: 18px;
-    color: black;
-}
-
-.account-password{
-    font-size: 20px;
-    color: black;
-}
-
-.edit{
-    font-size: 8px;
+  .logout-btn, .edit {
+    background-color: #ff6b6b;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
     text-decoration: none;
-}
-
-/* --- Row #3 --- */
-.row3-container{
-    margin-bottom: 1%;
-}
-
-
-.recent-locations-list {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .logout-btn:hover, .edit:hover {
+    background-color: #e63946;
+  }
+  
+  /* List styles */
+  .recent-locations-list {
     list-style-type: none;
-    text-align: center;
+    padding: 0;
   }
-
-  .align{
-    text-align: center;
+  
+  .recent-locations-list li {
+    margin-bottom: 10px;
   }
+  
+  /* Title styles */
+  .dashboard-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
