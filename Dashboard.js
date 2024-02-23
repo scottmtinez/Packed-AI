@@ -39,10 +39,6 @@ function Dashboard({ username, onLogout }) {
 
   return (
     <div className="dashboard-container">
-      <div className="">
-        
-      </div>
-
       {userData && (
         <div className="user-data-container">
           <button className='logout-btn' onClick={onLogout}>Logout</button><br/><br/>
