@@ -8,6 +8,22 @@ const NextPage = ({ location, username }) => {
         event.preventDefault();
         await sendLocationDataToFB(location, username);
     };
+    
+    const getArrivalDate = () => {
+
+    };
+
+    const getDepartureDate = () => {
+
+    };
+
+    const sendDateInfoToWeatherApi = () => {
+
+    };
+    
+    const sendDateInfoToFlightApi = () => {
+
+    };
 
     const sendLocationDataToFB = async (location, username) => {
         try {
