@@ -1,50 +1,32 @@
 import React, { useState } from 'react';
 import './NextPage.css';
-import { auth } from '../firebase';
-import { createUserWithEmailAndPassword, signOut } from 'firebase/auth';
-import { getAuth } from 'firebase/auth';
-import { getDatabase, ref, push, set, child, get, runTransaction, update } from 'firebase/database';
+import { getDatabase, ref, push, set } from "firebase/database";
 
-const NextPage = ({ location, username}) => {
+const NextPage = ({ location, username }) => {
 
-    const passDateToWeatherAPI = () => {
-
-    };
-
-    const passDateToFlightAPI = () => {
-    
-    };
-    
-    
-    const sendInfo = (event) => {
+    const sendInfo = async (event) => {
         event.preventDefault();
-        sendLocationDataToFB(location, username);
+        await sendLocationDataToFB(location, username);
     };
 
-    const sendLocationDataToFB = (location, username) => {
-        const auth = getAuth();
-        const user = auth.currentUser;
+    const sendLocationDataToFB = async (location, username) => {
+        try {
+            // Get a reference to the database
+            const database = getDatabase();
+            
+            // Sanitize the email to replace periods with commas
+            const sanitizedEmail = username.replace(/\./g, ',');
+            
+            // Reference the recent locations for the user
+            const userRecentLocationsRef = ref(database, `users/${sanitizedEmail}/recentLocations`);
     
-        if (!user) {
-            console.error('No user logged in.');
-            return;
+            // Push the new location to the list
+            await push(userRecentLocationsRef, location);
+    
+            console.log("Recent location sent to Firebase Database successfully!");
+        } catch (error) {
+            console.error("Error sending recent location to Firebase Database:", error);
         }
-    
-        // Replace "." with "," and sanitize for Firebase path
-        const modifiedEmail = username.replace(/\./g, ',');
-        const sanitizedEmail = modifiedEmail.replace(/[.#$/[\]]/g, '_');
-    
-        const db = getDatabase();
-        const recentLocationsRef = ref(db, `users/${sanitizedEmail}/recentLocations`);
-    
-        // Update the recentLocations node with the new location
-        update(recentLocationsRef, { location })
-            .then(() => {
-                console.log('Location data added to Firebase under recentLocations node');
-            })
-            .catch((error) => {
-                console.error('Error adding location data to Firebase:', error);
-            });
     };
     
 
