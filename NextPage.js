@@ -7,6 +7,7 @@ const NextPage = ({ location, username }) => {
     const sendInfo = async (event) => {
         event.preventDefault();
         await sendLocationDataToFB(location, username);
+        
     };
     
     const getExtraInformationData = () => { //Gets extra information for the vacation
