@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Weather.css';
 import PackingList from './PackingList';
-import { Link } from 'react-router-dom';
 
 const Weather = ({ location, username, arrivalDate, departureDate, extraInfo }) => {
     const [weatherData, setWeatherData] = useState(null);
@@ -10,7 +9,7 @@ const Weather = ({ location, username, arrivalDate, departureDate, extraInfo }) 
     useEffect(() => {
         const fetchWeatherData = async () => {
             try {
-                const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${KEY}&units=metric`);
+                const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${location.lat}&lon=${location.lon}&exclude=current,minutely,hourly&appid=${KEY}&units=metric`);
                 const data = await response.json();
                 setWeatherData(data);
             } catch (error) {
@@ -19,41 +18,47 @@ const Weather = ({ location, username, arrivalDate, departureDate, extraInfo }) 
         };
 
         fetchWeatherData();
-    }, [location, KEY]);
+    }, [location, arrivalDate, departureDate, KEY]);
 
     const convertToFahrenheit = (celsius) => {
         return ((celsius * 9/5) + 32).toFixed(1);
     };
 
-    const getWeatherIconUrl = (iconCode) => {
-        return `http://openweathermap.org/img/wn/${iconCode}.png`;
+    const formatDate = (timestamp) => {
+        const date = new Date(timestamp * 1000);
+        return date.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' });
     };
 
-    return(
+    return (
         <div>
-            {weatherData && (
-                <div>
-                    <div className='weather-container'>
-                        <button className='goToDashboardBtn'>Go to Dashboard</button>
-                        <h1 className='weather-title'>{location}</h1>
-                        {weatherData.weather[0]?.icon && (
-                                <img className='icon-size' src={getWeatherIconUrl(weatherData.weather[0].icon)} alt="Weather Icon" />
+            {weatherData ? (
+                <div className='weather-container'>
+                    <button className='goToDashboardBtn'>Go to Dashboard</button>
+                    <h1 className='weather-title'>{location}</h1>
+                    {weatherData.daily && (
+                        <ul>
+                            {weatherData.daily.map((day, index) => (
+                                <li key={index}>
+                                    <p>Date: {formatDate(day.dt)}</p>
+                                    <p>Temperature: {day.temp.day} °C</p>
+                                    <p>Description: {day.weather[0]?.description}</p>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                    <p className='weather-p'>
+                        {weatherData.main && (
+                            <span className='weather-deg'>{convertToFahrenheit(weatherData.main.temp)} °F </span>
                         )}
-
-                        <p className='weather-p'>
-                            <span className='weather-deg'>{convertToFahrenheit(weatherData.main?.temp)} °F </span><br/>
-                            <span className='weather-desc'>{weatherData.weather[0]?.description}</span><br/>
-                            
-                        </p>
-                        <div className='packingList-container'>
-                            <PackingList />
-                        </div>
+                    </p>
+                    <div className='packingList-container'>
+                        <PackingList />
                     </div>
                 </div>
+            ) : (
+                <p>Loading...</p>
             )}
-            {!weatherData && <p>Loading...</p>}
         </div>
-
     );
 };
 
