@@ -1,47 +1,33 @@
 import React, { useState } from 'react';
 import './NextPage.css';
 import { getDatabase, ref, push, set } from "firebase/database";
+import Weather from './Weather';
 
 const NextPage = ({ location, username }) => {
+    const [showWeatherPage, setShowWeatherPage] = useState(false);
+    const [arrivalDate, setArrivalDate] = useState('');
+    const [departureDate, setDepartureDate] = useState('');
+    const [extraInfo, setExtraInfo] = useState('');
 
-    const sendInfo = async (event) => {
+    const sendInfo = async (event) => { 
         event.preventDefault();
         await sendLocationDataToFB(location, username);
-        
-    };
-    
-    const getExtraInformationData = () => { //Gets extra information for the vacation
-    
-    };
 
-    const getArrivalDate = () => { //Gets arrival date
+        const arrivalDateValue = event.target.elements['arrival-date'].value;
+        const departureDateValue = event.target.elements['departure-date'].value;
 
-    };
+        setArrivalDate(arrivalDateValue);
+        setDepartureDate(departureDateValue);
 
-    const getDepartureDate = () => { //Gets departure date
-
-    };
-
-    const sendDateInfoToWeatherApi = () => { //Sends data to the weather api
-
-    };
-    
-    const sendDateInfoToFlightApi = () => { //Sends data to the flight api and then to the weather api
-
+        setShowWeatherPage(true);
     };
 
     const sendLocationDataToFB = async (location, username) => {
         try {
-            // Get a reference to the database
             const database = getDatabase();
-            
-            // Sanitize the email to replace periods with commas
             const sanitizedEmail = username.replace(/\./g, ',');
-            
-            // Reference the recent locations for the user
             const userRecentLocationsRef = ref(database, `users/${sanitizedEmail}/recentLocations`);
     
-            // Push the new location to the list
             await push(userRecentLocationsRef, location);
     
             console.log("Recent location sent to Firebase Database successfully!");
@@ -53,16 +39,19 @@ const NextPage = ({ location, username }) => {
 
     return(
         <div>
-            <div className='nextPage-container'>
+            {showWeatherPage ? (
+                <Weather location={location} username={username} arrivalDate={arrivalDate} departureDate={departureDate} />
+            ) : (
+                <div className='nextPage-container'>
                 <h2>{location}</h2>
-                <form className='NextPage-Form' onSubmit={sendInfo}>
-                    <input type='date' name='arrival-date' className='arrival-date '/>
-                    <input type='date' name='departure-date' className='departure-date '/><br/>
-                    <input type='text' name='extraInfo' className='extraInfo' placeholder='Extra Information about Destination...'/><br/>
-                    <input type='submit'name='button' className='submit' value='Add Information'/>
-                </form>
-            </div>
-
+                    <form className='NextPage-Form' onSubmit={sendInfo}>
+                        <input type='date' name='arrival-date' className='arrival-date '/>
+                        <input type='date' name='departure-date' className='departure-date '/><br/>
+                        <input type='text' name='extraInfo' className='extraInfo' placeholder='Extra Information about Destination...'/><br/>
+                        <input type='submit'name='button' className='submit' value='Add Information'/>
+                    </form>
+                </div>
+            )}
         </div>
     );
 }
