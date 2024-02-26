@@ -5,6 +5,8 @@
     height: 700px;
     border-radius: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
 }
 
 .weather-title{
@@ -12,3 +14,37 @@
     padding-top: 2%;
 }
 
+.goToDashboardBtn {
+    align-self: flex-end; 
+    border-radius: 5px;
+    background-color: #ff6b6b;
+    color: white;
+    margin-top: 1%;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+.goToDashboardBtn:hover{
+    background-color: #e63946;
+}
+
+.weather-p{
+    text-align: center;
+}
+
+.icon-size{
+    width: 10%;
+    height: 15%;
+    margin: 0 auto;
+}
+
+.weather-deg{
+    color: blue;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.weather-desc{
+    color: black;
+    font-size: 10px;
+}
