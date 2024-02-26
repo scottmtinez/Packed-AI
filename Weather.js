@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const Weather = ({ location, username, arrivalDate, departureDate, extraInfo }) => {
     const [weatherData, setWeatherData] = useState(null);
-    const KEY = 'e56209a25977b2465f2f62739cd457b8';
+    const KEY = 'HIDDEN';
 
     useEffect(() => {
         const fetchWeatherData = async () => {
