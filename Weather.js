@@ -9,7 +9,8 @@ const Weather = ({ location, username, arrivalDate, departureDate, extraInfo }) 
     useEffect(() => {
         const fetchWeatherData = async () => {
             try {
-                const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${location.lat}&lon=${location.lon}&exclude=current,minutely,hourly&appid=${KEY}&units=metric`);
+                const response = await fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${location.lat}&lon=${location.lon}&exclude=minutely,hourly&appid=${KEY}`);
+                //const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${location.lat}&lon=${location.lon}&exclude=current,minutely,hourly&appid=${KEY}&units=metric`);
                 const data = await response.json();
                 setWeatherData(data);
             } catch (error) {
