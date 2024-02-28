@@ -6,6 +6,7 @@ const Weather = ({ location, username, arrivalDate, departureDate, extraInfo }) 
     const [weatherData, setWeatherData] = useState(null);
     const KEY = 'HIDDEN';
 
+
     useEffect(() => {
         const fetchWeatherData = async () => {
             try {
