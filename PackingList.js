@@ -4,7 +4,7 @@ import './PackingList.css';
 function PackingList(){
     return(
         <div>
-            <h5 className='packingList-title'>List</h5>
+            <h5 className='packingList-title'>Packing List</h5>
 
         </div>
     );
