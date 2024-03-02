@@ -9,7 +9,6 @@
     flex-direction: column;
 }
 
-
 .weather-title{
     text-align: center;
     padding-top: 2%;
@@ -49,3 +48,36 @@
     color: black;
     font-size: 10px;
 }
+
+.layout {
+    list-style-type: none;
+    padding: 0;
+    column-count: 2; /* Start with a single column */
+    column-gap: 10px; /* Adjust column gap as needed */
+    margin: 0 auto;
+}
+
+.layout-container{
+    background-color: lightblue;
+    border-radius: 10px;
+}
+
+.layout-item {
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.layout-item-date{
+    font-weight: bold;
+    text-align: center;
+}
+
+.layout-item-temp{
+    text-align: center;
+}
+
+.layout-item-forecast{
+    text-align: center;
+}
+
