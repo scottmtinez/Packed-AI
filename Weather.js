@@ -12,7 +12,7 @@ const Weather = ({ location, username, arrivalDate, departureDate, extraInfo }) 
                 // Get latitude and longitude for the location
                 const { latitude, longitude } = await getLocationCoordinates(location);
                 
-                // Fetch weather data using latitude and longitude
+                // Fetch weather data using latitude and longitude 
                 const response = await fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${latitude}&lon=${longitude}&exclude=minutely,hourly&appid=${KEY}&units=imperial`);
                 const data = await response.json();
                 setWeatherData(data);
