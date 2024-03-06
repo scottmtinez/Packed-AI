@@ -72,7 +72,7 @@ const Weather = ({ location, username, arrivalDate, departureDate, extraInfo }) 
                         <PackingList />
                     </div>
                 </div>
-            ) : (
+            ) : ( 
                 <p>Loading...</p>
             )}
         </div>
